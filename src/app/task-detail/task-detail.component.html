@@ -1,0 +1,23 @@
+<div *ngIf="task">
+  <div>
+    <h3>Details</h3>
+    <span class="category"> Description : </span>
+    <span class="category-value">{{task.description | uppercase}}</span>
+    <br>
+    <span class="category">Time: </span>
+    <span class="category-value">{{task.time | uppercase}}</span>
+    <br>
+    <button (click)="editTask()">Edit</button>
+    <button (click)="goBack()">go back</button>
+  </div>
+</div>
+
+<div *ngIf="enableEdit">
+  <label style="margin-right: 45px;">Enter Description</label>
+  <input [(ngModel)]="task.description" placeholder="Enter Description" />
+  <br>
+  <label style="margin-right: 45px;">Enter Time</label>
+  <input [(ngModel)]="task.time" placeholder="Enter Time" />
+  <br>
+  <button (click)="updateTask(task)">Save</button>
+</div>
