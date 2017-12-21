@@ -1,0 +1,9 @@
+<div>
+  <label style="margin-right: 45px;">Enter Description</label>
+  <input [(ngModel)]="task.description" placeholder="Enter Description" />
+  <br>
+  <label style="margin-right: 45px;">Enter Time</label>
+  <input [(ngModel)]="task.time" placeholder="Enter Time" />
+  <br>
+  <button (click)="createTask(task)">Add Task</button>
+</div>

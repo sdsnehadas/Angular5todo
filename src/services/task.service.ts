@@ -17,7 +17,7 @@ export class TaskService {
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   private tasksUrl = 'api/tasks';
-  /** Log a HeroService message with the MessageService */
+  /** Log a taskService message with the MessageService */
   private log(message: string) {
     this.messageService.add('TaskService: ' + message);
   }
@@ -25,25 +25,42 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.tasksUrl)
       .pipe(
-      tap(tasks => this.log(`fetched heroes`)),
+      tap(tasks => this.log(`fetched taskes`)),
       catchError(this.handleError('getTasks', []))
       );
   }
 
   getTask(id: number): Observable<Task> {
     const url = `${this.tasksUrl}/${id}`;
-    // Todo: send the message _after_ fetching the hero
+    // Todo: send the message _after_ fetching the task
     return this.http.get<Task>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Task>(`getHero id=${id}`))
+      tap(_ => this.log(`fetched task id=${id}`)),
+      catchError(this.handleError<Task>(`gettask id=${id}`))
     );
   }
 
-  /** PUT: update the hero on the server */
-  updateHero(task: Task): Observable<any> {
+  /** PUT: update the task on the server */
+  updateTask(task: Task): Observable<any> {
     return this.http.put(this.tasksUrl, task, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${task.id}`)),
+      tap(_ => this.log(`updated task id=${task.id}`)),
       catchError(this.handleError<any>('updateTask'))
+    );
+  }
+
+  addTask (task: Task): Observable<Task> {
+    return this.http.post<Task>(this.tasksUrl, task, httpOptions).pipe(
+      tap((task: Task) => this.log(`added task w/ id=${task.id}`)),
+      catchError(this.handleError<Task>('addTask'))
+    );
+  }
+
+  deleteTask (task: Task | number): Observable<Task> {
+    const id = typeof task === 'number' ? task : task.id;
+    const url = `${this.tasksUrl}/${id}`;
+  
+    return this.http.delete<Task>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted task id=${id}`)),
+      catchError(this.handleError<Task>('deletetask'))
     );
   }
 

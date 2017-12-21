@@ -13,6 +13,7 @@ import {TaskService} from '../services/task.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from '../services/message.service';
 import { AppRoutingModule } from './/app-routing.module';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './/app-routing.module';
     TodoListComponent,
     TaskDetailComponent,
     MessagesComponent,
+    AddTaskComponent,
     
   ],
   imports: [

@@ -4,7 +4,10 @@
     <a routerLink="/detail/{{task.id}}">
       <span class="badge">{{task.id}}</span> {{task.description}}
     </a>
+    <button class="delete" title="delete task" (click)="deleteTask(task)">x</button>
   </li>
 </ul>
 
-<button (click)="addTask()">Add Task</button>
+<button *ngIf="!showAddTask" (click)="addTask()">Add Task</button>
+
+<app-add-task [taskList]="taskList" *ngIf="showAddTask" [showComponent]="showAddTask"></app-add-task>

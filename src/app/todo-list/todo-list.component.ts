@@ -8,6 +8,7 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+  showAddTask: boolean;
   taskList: Task[];
 
 
@@ -23,7 +24,13 @@ export class TodoListComponent implements OnInit {
   }
 
   addTask() : void {
-    
+    this.showAddTask = true;
+  }
+
+  deleteTask(task) : void {
+    console.log(task)
+    this.taskList = this.taskList.filter(t => t !== task);
+    this.taskService.deleteTask(task).subscribe();
   }
 
 }

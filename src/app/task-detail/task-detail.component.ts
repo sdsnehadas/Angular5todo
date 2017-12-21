@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Task } from '../../services/task';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -38,7 +38,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   updateTask(task): void {
-    this.taskService.updateHero(task)
+    this.taskService.updateTask(task)
       .subscribe(() => {
         this.enableEdit = false;
         this.goBack()
